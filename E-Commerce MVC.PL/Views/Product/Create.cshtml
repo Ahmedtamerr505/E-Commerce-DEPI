@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model E_Commerce.Services.Model_View.ProductVM
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="p-4 rounded shadow-lg bg-white" style="max-width: 600px; margin: 0 auto;">
+    <h2 class="mb-4 text-center text-primary">Create Product</h2>
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="fw-bold"></label>
+        <input asp-for="Name" class="form-control form-control-lg" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Price" class="fw-bold"></label>
+        <input asp-for="Price" class="form-control form-control-lg" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Discount" class="fw-bold">Discount (%)</label>
+        <input asp-for="Discount" class="form-control form-control-lg" placeholder="Optional: e.g. 10 for 10% off" min="0" max="100" step="0.01" />
+        <span asp-validation-for="Discount" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Description" class="fw-bold"></label>
+        <textarea asp-for="Description" class="form-control form-control-lg"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="StockQuantity" class="fw-bold"></label>
+        <input asp-for="StockQuantity" class="form-control form-control-lg" />
+        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-4">
+        <label class="fw-bold" for="ProductTypeIds">Types (Select all that apply)</label>
+        <select asp-for="ProductTypeIds" class="form-select" multiple="multiple" id="ProductTypeIds" name="ProductTypeIds">
+            @foreach (var type in (IEnumerable<dynamic>)ViewBag.Types)
+            {
+                <option value="@type.Id">@type.Name</option>
+            }
+        </select>
+        <small class="form-text text-muted">Hold Ctrl (Windows) or Command (Mac) to select multiple types.</small>
+    </div>
+    <div class="form-group mb-4">
+        <label asp-for="Image" class="fw-bold"></label>
+        <input asp-for="Image" type="file" class="form-control form-control-lg" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary btn-lg px-4">Create</button>
+        <a asp-action="Index" class="btn btn-secondary btn-lg px-4">Cancel</a>
+    </div>
+</form>
+
+@section Styles {
+    <style>
+        .form-check-input:checked {
+            background-color: #e94560;
+            border-color: #e94560;
+        }
+
+        .form-check-label {
+            font-weight: 500;
+            color: #222;
+        }
+
+        .form-check.bg-light {
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+
+            .form-check.bg-light:hover {
+                background: #f8e9ef;
+                box-shadow: 0 2px 8px rgba(233,69,96,0.10);
+            }
+    </style>
+}
