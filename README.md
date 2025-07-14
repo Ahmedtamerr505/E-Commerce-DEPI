@@ -4,15 +4,6 @@
 
 ---
 
-## 🖼️ Screenshots
-
-Here are some screenshots of TechXpress in action:
-
-![Homepage Screenshot](C:\Users\Dell\OneDrive\Desktop\Thech2\Thech2\Thech\E-Commerce MVC.PL\wwwroot\images\HomePage)
-![Product Page Screenshot](path/to/product-page-screenshot.png)
-
----
-
 ## ✨ User Features
 
 - 🔐 **Secure Authentication & Authorization**  
