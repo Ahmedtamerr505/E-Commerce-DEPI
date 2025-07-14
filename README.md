@@ -8,7 +8,7 @@
 
 Here are some screenshots of TechXpress in action:
 
-![Homepage Screenshot](path/to/homepage-screenshot.png)
+![Homepage Screenshot](C:\Users\Dell\OneDrive\Desktop\Thech2\Thech2\Thech\E-Commerce MVC.PL\wwwroot\images\HomePage)
 ![Product Page Screenshot](path/to/product-page-screenshot.png)
 
 ---
@@ -112,7 +112,7 @@ To run the project locally:
 
 1. **Clone the repository:**
    ```sh
-     git clone https://github.com/yourusername/e-commerce-blazor-mvc.git
+     git clone https://github.com/Ahmedtamerr505/E-Commerce-DEPI.git
    ```
 2. **Open the solution in Visual Studio 2022 or later.**
 3. **Restore NuGet packages and build the solution.**
