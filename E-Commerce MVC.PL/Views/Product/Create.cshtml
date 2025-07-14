@@ -8,73 +8,88 @@
     ViewData["Title"] = "Create Product";
 }
 
-<form asp-action="Create" method="post" enctype="multipart/form-data" class="p-4 rounded shadow-lg bg-white" style="max-width: 600px; margin: 0 auto;">
-    <h2 class="mb-4 text-center text-primary">Create Product</h2>
-    <div class="form-group mb-3">
-        <label asp-for="Name" class="fw-bold"></label>
-        <input asp-for="Name" class="form-control form-control-lg" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+<section class="py-5 min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="card shadow-lg border-0 p-4 rounded-4">
+                    <div class="card-body">
+                        <h2 class="fw-bold mb-4 text-center">Create Product</h2>
+                        <form asp-action="Create" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label fw-semibold"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger small"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Price" class="form-label fw-semibold"></label>
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger small"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Discount" class="form-label fw-semibold">Discount (%)</label>
+                                <input asp-for="Discount" class="form-control" placeholder="Optional: e.g. 10 for 10% off" min="0" max="100" step="0.01" />
+                                <span asp-validation-for="Discount" class="text-danger small"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label fw-semibold"></label>
+                                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="StockQuantity" class="form-label fw-semibold"></label>
+                                <input asp-for="StockQuantity" class="form-control" />
+                                <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold" for="ProductTypeIds">Types (Select all that apply)</label>
+                                <select asp-for="ProductTypeIds" class="form-select" multiple="multiple" id="ProductTypeIds" name="ProductTypeIds">
+                                    @foreach (var type in (IEnumerable<dynamic>)ViewBag.Types)
+                                    {
+                                        <option value="@type.Id">@type.Name</option>
+                                    }
+                                </select>
+                                <small class="form-text text-muted">Hold Ctrl (Windows) or Command (Mac) to select multiple types.</small>
+                            </div>
+                            <div class="mb-4">
+                                <label asp-for="Image" class="form-label fw-semibold"></label>
+                                <input asp-for="Image" type="file" class="form-control" />
+                                <span asp-validation-for="Image" class="text-danger small"></span>
+                            </div>
+                            <div class="d-flex justify-content-between gap-2">
+                                <button type="submit" class="btn btn-danger px-4">Create</button>
+                                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group mb-3">
-        <label asp-for="Price" class="fw-bold"></label>
-        <input asp-for="Price" class="form-control form-control-lg" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Discount" class="fw-bold">Discount (%)</label>
-        <input asp-for="Discount" class="form-control form-control-lg" placeholder="Optional: e.g. 10 for 10% off" min="0" max="100" step="0.01" />
-        <span asp-validation-for="Discount" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Description" class="fw-bold"></label>
-        <textarea asp-for="Description" class="form-control form-control-lg"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="StockQuantity" class="fw-bold"></label>
-        <input asp-for="StockQuantity" class="form-control form-control-lg" />
-        <span asp-validation-for="StockQuantity" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-4">
-        <label class="fw-bold" for="ProductTypeIds">Types (Select all that apply)</label>
-        <select asp-for="ProductTypeIds" class="form-select" multiple="multiple" id="ProductTypeIds" name="ProductTypeIds">
-            @foreach (var type in (IEnumerable<dynamic>)ViewBag.Types)
-            {
-                <option value="@type.Id">@type.Name</option>
-            }
-        </select>
-        <small class="form-text text-muted">Hold Ctrl (Windows) or Command (Mac) to select multiple types.</small>
-    </div>
-    <div class="form-group mb-4">
-        <label asp-for="Image" class="fw-bold"></label>
-        <input asp-for="Image" type="file" class="form-control form-control-lg" />
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
-    <div class="d-flex justify-content-between">
-        <button type="submit" class="btn btn-primary btn-lg px-4">Create</button>
-        <a asp-action="Index" class="btn btn-secondary btn-lg px-4">Cancel</a>
-    </div>
-</form>
-
+</section>
 @section Styles {
     <style>
-        .form-check-input:checked {
-            background-color: #e94560;
-            border-color: #e94560;
+        .card {
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 32px rgba(233,69,96,0.10);
         }
 
-        .form-check-label {
-            font-weight: 500;
-            color: #222;
+        .form-label {
+            color: #e94560;
         }
 
-        .form-check.bg-light {
-            transition: box-shadow 0.2s, background 0.2s;
+        .btn-danger {
+            background: #e94560;
+            border: none;
         }
 
-            .form-check.bg-light:hover {
-                background: #f8e9ef;
-                box-shadow: 0 2px 8px rgba(233,69,96,0.10);
+            .btn-danger:hover {
+                background: #d12c4a;
             }
+
+        .btn-outline-secondary:hover {
+            background: #f5f5f5;
+        }
     </style>
 }

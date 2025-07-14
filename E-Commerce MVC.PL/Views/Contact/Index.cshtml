@@ -40,28 +40,61 @@
         <!-- Right Contact Form -->
         <div class="col-md-8">
             <div class="bg-white rounded-3 shadow-sm p-4">
-                <form>
+                <form asp-action="Index" method="post">
                     <div class="row g-3 mb-3">
                         <div class="col-md-4">
-                            <input type="text" class="form-control bg-light border-0" placeholder="Your Name *" required />
+                            <input type="text" class="form-control bg-light border-0" name="Name" placeholder="Your Name *" required />
                         </div>
                         <div class="col-md-4">
-                            <input type="email" class="form-control bg-light border-0" placeholder="Your Email *" required />
+                            <input type="email" class="form-control bg-light border-0" name="Email" placeholder="Your Email *" required />
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control bg-light border-0" placeholder="Your Phone *" required />
+                            <input type="text" class="form-control bg-light border-0" name="Phone" placeholder="Your Phone *" required />
                         </div>
                     </div>
                     <div class="mb-4">
-                        <textarea class="form-control bg-light border-0" rows="6" placeholder="Your Massage" required></textarea>
+                        <textarea class="form-control bg-light border-0" name="Message" rows="6" placeholder="Your Message" required></textarea>
                     </div>
                     <div class="text-end">
-                        <button type="submit" class="btn btn-danger px-5 py-2" style="background:#e94560;border:none;font-size:1.1rem;">Send Massage</button>
+                        <button type="submit" class="btn btn-danger px-5 py-2" style="background:#e94560;border:none;font-size:1.1rem;">Send Message</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    @if (Context.Session.GetString("IsAdmin") == "true" && ViewBag.Messages != null)
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-danger text-white fw-bold">Submitted Contact Messages</div>
+                    <div class="card-body p-0">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var msg in ViewBag.Messages)
+                                {
+                                    <tr>
+                                        <td>@msg.Name</td>
+                                        <td>@msg.Email</td>
+                                        <td>@msg.Phone</td>
+                                        <td>@msg.Message</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 <br>
 <br>
@@ -71,4 +104,4 @@
 
 @section Scripts {
     <!-- Add any page-specific scripts here if needed -->
-} 
+}
