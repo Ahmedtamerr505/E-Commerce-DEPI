@@ -112,7 +112,7 @@ To run the project locally:
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/yourusername/techxpress.git
+     git clone https://github.com/yourusername/e-commerce-blazor-mvc.git
    ```
 2. **Open the solution in Visual Studio 2022 or later.**
 3. **Restore NuGet packages and build the solution.**
@@ -122,4 +122,4 @@ To run the project locally:
 
 ## 📄 License
 
-This project is licensed under
+This project is licensed under the MIT License.
